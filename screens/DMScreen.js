@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { useContext } from "react";
 import { ModeContext } from "../context/Context";
 
-function SearchScreen() {
+function DMScreen() {
   const ctx = useContext(ModeContext);
 
   const { darkMode } = ctx;
@@ -13,18 +13,20 @@ function SearchScreen() {
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: darkMode ? "#1a1a1a" : "#fff",
+      margin: 0,
+      padding: 0
     },
     title: {
       fontSize: 24,
       color: darkMode ? '#fff' : '#2d2d2d'
     },
   });
-  
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>SearchScreen</Text>
+      <Text style={styles.title}>DM Screen</Text>
     </View>
   );
 }
 
-export default SearchScreen;
+export default DMScreen;

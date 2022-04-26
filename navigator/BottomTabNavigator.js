@@ -13,10 +13,10 @@ import { ModeContext } from "../context/Context";
 
 const Tab = createBottomTabNavigator();
 
-function BottomTabNavigator() {
+function BottomTabNavigator({ navigation }) {
   const ctx = useContext(ModeContext);
 
-  const {changeMode, darkMode} = ctx;
+  const { changeMode, darkMode } = ctx;
 
   return (
     <Tab.Navigator
@@ -26,9 +26,13 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: !darkMode ? "#2d2d2d" : "#fff",
         tabBarStyle: {
           backgroundColor: darkMode ? "#2d2d2d" : "#fff",
+          borderTopColor: darkMode ? "#2d2d2d" : "#e4e4e4",
+          borderTopWidth: 1,
         },
         headerStyle: {
           backgroundColor: darkMode ? "#2d2d2d" : "#fff",
+          borderBottomColor: darkMode ? "#2d2d2d" : "#e4e4e4",
+          borderBottomWidth: 1,
         },
         headerTintColor: !darkMode ? "#2d2d2d" : "#fff",
         headerStatusBarHeight: 30,
@@ -39,9 +43,18 @@ function BottomTabNavigator() {
         headerLeft: ({ tintColor }) => (
           <Ionicons
             name={darkMode ? "md-sunny" : "md-moon"}
-            style={{ fontSize: 24, color: tintColor, paddingLeft: 15 }}
+            style={{ fontSize: 24, color: tintColor, paddingLeft: 20 }}
             onPress={() => {
               changeMode();
+            }}
+          />
+        ),
+        headerRight: ({ tintColor }) => (
+          <Ionicons
+            name="ios-chatbubbles"
+            style={{ fontSize: 24, color: tintColor, paddingRight: 20 }}
+            onPress={() => {
+              navigation.navigate('DMScreen')
             }}
           />
         ),
@@ -58,6 +71,9 @@ function BottomTabNavigator() {
               color={color}
             />
           ),
+        }}
+        initialParams={{
+          darkMode: darkMode,
         }}
       />
       <Tab.Screen

@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";;
 
 export const ModeContext = createContext({
-  darkMode: true,
+  darkMode: false,
   changeMode: () => {},
 });
 
 function ModeContextProvider({ children }) {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   function changeMode() {
     setDarkMode(!darkMode);

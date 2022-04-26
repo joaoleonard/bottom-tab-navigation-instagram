@@ -1,26 +1,31 @@
-import { useContext } from "react";
 import { StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 
 import BottomTabNavigator from "./navigator/BottomTabNavigator";
-import ModeContextProvider, { ModeContext } from "./context/Context";
+import ModeContextProvider from "./context/Context";
+import MyStatusBar from "./components/MyStatusBar";
+import DMScreen from "./screens/DMScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const ctx = useContext(ModeContext);
-
   return (
     <ModeContextProvider>
-      <StatusBar style="auto" />
+      <MyStatusBar />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="BottomTabs"
             component={BottomTabNavigator}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="DMScreen"
+            component={DMScreen}
+            options={{ 
+              headerShown: true,
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
